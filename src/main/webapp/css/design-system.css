@@ -1,0 +1,630 @@
+/* =======================================================
+   Syntra Design System — Centralized Stylesheet
+   Job Portal System Web Application
+   Directly derived from Resources/design.md
+   ======================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* ---------------------------------------------------
+       1. Core Color Palette (from design.md section 2)
+       --------------------------------------------------- */
+    --black: #000000;
+    --navy-950: #000010;
+    --navy-900: #000020;
+    --navy-800: #001030;
+    --navy-700: #001040;
+
+    --blue-600: #005CFF;
+    --blue-500: #0077FF;
+    --electric-blue: #1683FF;
+    --blue-soft: #4DA3FF;
+
+    --white: #F5F5F5;
+    --white-pure: #FFFFFF;
+    --gray-300: #B8BDC7;
+    --gray-500: #707783;
+
+    /* Semantic Status Colors (design.md section 15) */
+    --color-success: #36D399;
+    --color-warning: #F5C451;
+    --color-error: #FF5C6C;
+    --color-info: #1683FF;
+
+    /* ---------------------------------------------------
+       2. Semantic Aliases & Application Tokens
+       --------------------------------------------------- */
+    --color-primary: var(--blue-600);
+    --color-primary-hover: var(--blue-500);
+    --color-secondary: var(--gray-300);
+    --color-accent: var(--electric-blue);
+    --color-background: var(--black);
+    --color-surface: rgba(0, 16, 48, 0.42);
+    --color-surface-elevated: var(--navy-800);
+    --color-surface-subtle: var(--navy-900);
+    --color-text-primary: var(--white);
+    --color-text-secondary: var(--gray-300);
+    --color-text-muted: var(--gray-500);
+    --color-border: rgba(255, 255, 255, 0.08);
+
+    /* Compatibility Mappings for Existing Legacy Selectors */
+    --primary-color: var(--blue-600);
+    --primary-hover: var(--blue-500);
+    --primary-light: rgba(0, 92, 255, 0.12);
+    --primary-border: rgba(0, 119, 255, 0.30);
+
+    --secondary-color: var(--gray-300);
+    --secondary-hover: var(--white-pure);
+
+    --bg-color: var(--black);
+    --card-bg: rgba(0, 16, 48, 0.42);
+    --text-main: var(--white);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-focus: var(--electric-blue);
+
+    --error-bg: rgba(255, 92, 108, 0.10);
+    --error-border: rgba(255, 92, 108, 0.30);
+    --error-text: #FF7B88;
+
+    --success-bg: rgba(54, 211, 153, 0.10);
+    --success-border: rgba(54, 211, 153, 0.30);
+    --success-text: #36D399;
+
+    --warning-bg: rgba(245, 196, 81, 0.10);
+    --warning-border: rgba(245, 196, 81, 0.30);
+    --warning-text: #F5C451;
+
+    /* ---------------------------------------------------
+       3. Typography & Spacing
+       --------------------------------------------------- */
+    --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* ---------------------------------------------------
+       4. Border Radius (design.md section 16)
+       --------------------------------------------------- */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --radius-pill: 999px;
+
+    /* ---------------------------------------------------
+       5. Shadows & Glows (design.md section 10)
+       --------------------------------------------------- */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.55);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.7);
+
+    --shadow-blue-sm: 0 0 16px rgba(0, 119, 255, 0.20);
+    --shadow-blue-md: 0 0 32px rgba(0, 119, 255, 0.18);
+    --shadow-blue-lg: 0 0 80px rgba(0, 92, 255, 0.12);
+
+    /* ---------------------------------------------------
+       6. Transitions (design.md section 17)
+       --------------------------------------------------- */
+    --transition-standard: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease, color 220ms ease;
+}
+
+/* -------------------------------------------------------
+   Global Reset & Base Layout
+   ------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--black);
+    background-image: 
+        radial-gradient(circle at 50% 12%, rgba(0, 92, 255, 0.14), transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(22, 131, 255, 0.06), transparent 35%),
+        linear-gradient(135deg, #000000 0%, #000010 55%, #000020 100%);
+    background-attachment: fixed;
+    color: var(--white);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* -------------------------------------------------------
+   Navbar (design.md section 6)
+   ------------------------------------------------------- */
+.navbar {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 1rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+}
+
+.nav-brand {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--white-pure);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    letter-spacing: -0.02em;
+    transition: var(--transition-standard);
+}
+
+.nav-brand:hover {
+    color: var(--white-pure);
+    text-shadow: 0 0 16px rgba(22, 131, 255, 0.4);
+}
+
+.nav-brand span {
+    font-size: 1.25rem;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--gray-300);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.45rem 0.85rem;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-standard);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--white-pure);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 16px rgba(0, 92, 255, 0.15);
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--white-pure);
+    padding: 0.35rem 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: var(--radius-pill);
+}
+
+/* -------------------------------------------------------
+   Buttons (design.md section 7)
+   ------------------------------------------------------- */
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.6rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition: var(--transition-standard);
+    white-space: nowrap;
+}
+
+/* Primary CTA: Crisp White Minimal Luxury (design.md 7) */
+.btn-primary,
+.btn-white {
+    background: var(--white-pure);
+    color: var(--black);
+    border-color: var(--white-pure);
+}
+
+.btn-primary:hover,
+.btn-white:hover {
+    background: var(--white);
+    color: var(--black);
+    box-shadow: 0 0 24px rgba(255, 255, 255, 0.35);
+    transform: translateY(-1px);
+}
+
+/* Accent Button: Electric Blue Glow (design.md 7) */
+.btn-accent,
+.btn-blue {
+    background: var(--blue-600);
+    color: var(--white-pure);
+    border-color: var(--blue-600);
+}
+
+.btn-accent:hover,
+.btn-blue:hover {
+    background: var(--blue-500);
+    color: var(--white-pure);
+    box-shadow: 0 0 24px rgba(0, 119, 255, 0.40);
+    transform: translateY(-1px);
+}
+
+/* Secondary Button: Subtle Dark Glass */
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.22);
+    color: var(--white-pure);
+    transform: translateY(-1px);
+}
+
+/* Outline Button: Low Contrast Border */
+.btn-outline {
+    background: transparent;
+    color: var(--gray-300);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.btn-outline:hover {
+    background: rgba(0, 92, 255, 0.08);
+    border-color: var(--blue-500);
+    color: var(--white-pure);
+    box-shadow: 0 0 16px rgba(0, 92, 255, 0.15);
+}
+
+/* Danger / Reject Buttons */
+.btn-danger,
+.btn-danger-outline {
+    background: rgba(255, 92, 108, 0.10);
+    border: 1px solid rgba(255, 92, 108, 0.30);
+    color: var(--color-error);
+}
+
+.btn-danger:hover,
+.btn-danger-outline:hover {
+    background: rgba(255, 92, 108, 0.22);
+    border-color: var(--color-error);
+    color: var(--white-pure);
+    box-shadow: 0 0 20px rgba(255, 92, 108, 0.25);
+}
+
+/* Success / Shortlist Buttons */
+.btn-success,
+.btn-success-outline {
+    background: rgba(54, 211, 153, 0.12);
+    border: 1px solid rgba(54, 211, 153, 0.35);
+    color: var(--color-success);
+}
+
+.btn-success:hover,
+.btn-success-outline:hover {
+    background: rgba(54, 211, 153, 0.25);
+    border-color: var(--color-success);
+    color: var(--white-pure);
+    box-shadow: 0 0 20px rgba(54, 211, 153, 0.25);
+}
+
+.btn-sm {
+    padding: 0.45rem 1rem;
+    font-size: 0.85rem;
+    border-radius: var(--radius-sm);
+}
+
+/* -------------------------------------------------------
+   Cards (design.md section 8)
+   ------------------------------------------------------- */
+.card,
+.register-card,
+.profile-card,
+.action-card,
+.job-item-card,
+.job-card,
+.applicant-card {
+    background: rgba(0, 16, 48, 0.42);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-standard);
+}
+
+.card:hover,
+.action-card:hover,
+.job-item-card:hover,
+.job-card:hover,
+.applicant-card:hover {
+    border-color: rgba(0, 119, 255, 0.35);
+    box-shadow: 0 0 40px rgba(0, 92, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+/* -------------------------------------------------------
+   Forms & Inputs (design.md section 14)
+   ------------------------------------------------------- */
+.form-control,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="search"],
+select.form-control,
+select,
+textarea.form-control,
+textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    color: var(--white-pure);
+    border-radius: var(--radius-md);
+    transition: var(--transition-standard);
+}
+
+.form-control::placeholder,
+input::placeholder,
+textarea::placeholder {
+    color: var(--gray-500);
+}
+
+.form-control:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.055);
+    border-color: var(--electric-blue);
+    box-shadow: 0 0 0 3px rgba(22, 131, 255, 0.14);
+}
+
+select.form-control,
+select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23B8BDC7'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.15rem;
+    padding-right: 2.5rem;
+}
+
+select option {
+    background-color: var(--navy-900);
+    color: var(--white);
+}
+
+.form-control.is-invalid {
+    border-color: var(--color-error);
+    background: rgba(255, 92, 108, 0.08);
+}
+
+.form-control[readonly],
+input[readonly],
+textarea[readonly] {
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--gray-500);
+    cursor: not-allowed;
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.form-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.45rem;
+    display: inline-block;
+}
+
+.form-label .required {
+    color: var(--color-error);
+    margin-left: 2px;
+}
+
+.field-error {
+    color: var(--color-error);
+    font-size: 0.82rem;
+    margin-top: 0.35rem;
+    min-height: 1.15rem;
+}
+
+.help-text,
+.form-hint {
+    font-size: 0.82rem;
+    color: var(--gray-500);
+    margin-top: 0.3rem;
+}
+
+/* -------------------------------------------------------
+   Badges & Tags (design.md section 13 & 15)
+   ------------------------------------------------------- */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1;
+}
+
+/* Job Seeker Badge: Electric Blue Accent */
+.badge-jobseeker {
+    background: rgba(0, 92, 255, 0.15);
+    color: var(--blue-soft);
+    border: 1px solid rgba(0, 119, 255, 0.35);
+}
+
+/* Recruiter Badge: Indigo/Cyan Tint */
+.badge-recruiter {
+    background: rgba(22, 131, 255, 0.15);
+    color: #60a5fa;
+    border: 1px solid rgba(22, 131, 255, 0.35);
+}
+
+/* Application Status Badges */
+.status-applied {
+    background: rgba(22, 131, 255, 0.14);
+    color: var(--blue-soft);
+    border: 1px solid rgba(22, 131, 255, 0.35);
+}
+
+.status-under-review {
+    background: rgba(245, 196, 81, 0.14);
+    color: var(--color-warning);
+    border: 1px solid rgba(245, 196, 81, 0.35);
+}
+
+.status-shortlisted {
+    background: rgba(54, 211, 153, 0.14);
+    color: var(--color-success);
+    border: 1px solid rgba(54, 211, 153, 0.35);
+}
+
+.status-rejected {
+    background: rgba(255, 92, 108, 0.14);
+    color: var(--color-error);
+    border: 1px solid rgba(255, 92, 108, 0.35);
+}
+
+.status-unknown {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--gray-300);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Skill Tags */
+.skill-tag,
+.badge-tag {
+    background: rgba(0, 92, 255, 0.10);
+    color: var(--white);
+    border: 1px solid rgba(0, 119, 255, 0.25);
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 0.35rem 0.8rem;
+    border-radius: var(--radius-pill);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* -------------------------------------------------------
+   Alert Banners (design.md section 15)
+   ------------------------------------------------------- */
+.alert {
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+    font-size: 0.92rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.alert-error {
+    background: rgba(255, 92, 108, 0.10);
+    border: 1px solid rgba(255, 92, 108, 0.30);
+    color: #FF8591;
+}
+
+.alert-success {
+    background: rgba(54, 211, 153, 0.10);
+    border: 1px solid rgba(54, 211, 153, 0.30);
+    color: #4FE1A9;
+}
+
+.alert-warning {
+    background: rgba(245, 196, 81, 0.10);
+    border: 1px solid rgba(245, 196, 81, 0.30);
+    color: #F8CF6B;
+}
+
+.alert-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+/* -------------------------------------------------------
+   Dividers & Decorative Lines (design.md section 9)
+   ------------------------------------------------------- */
+hr,
+.divider {
+    border: none;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 1.5rem 0;
+}
+
+.glow-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(22, 131, 255, 0.85), transparent);
+    margin: 2rem 0;
+}
+
+/* -------------------------------------------------------
+   Footer
+   ------------------------------------------------------- */
+.footer {
+    background: rgba(0, 0, 0, 0.85);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    font-size: 0.88rem;
+    color: var(--gray-500);
+    margin-top: auto;
+}
+
+.footer a {
+    color: var(--gray-300);
+    text-decoration: none;
+    transition: var(--transition-standard);
+}
+
+.footer a:hover {
+    color: var(--white-pure);
+}
+
+/* -------------------------------------------------------
+   Accessibility / Focus States (design.md section 19)
+   ------------------------------------------------------- */
+:focus-visible {
+    outline: 2px solid var(--electric-blue);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
