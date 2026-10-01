@@ -1,0 +1,21 @@
+# Maven build output
+target/
+*.class
+*.war
+
+# Database credentials (Keep real password local only)
+src/main/resources/db.properties
+!src/main/resources/db.properties.example
+
+# IDE Configuration
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS metadata
+Thumbs.db
+Desktop.ini
+.DS_Store

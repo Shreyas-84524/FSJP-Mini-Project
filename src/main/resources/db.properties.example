@@ -1,0 +1,7 @@
+# MySQL Database Configuration Example
+# Copy this file to db.properties and set your local MySQL credentials
+
+db.url=jdbc:mysql://localhost:3306/job_portal_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+db.user=root
+db.password=YOUR_LOCAL_MYSQL_PASSWORD
+db.driver=com.mysql.cj.jdbc.Driver
